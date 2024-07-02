@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+class_name HUD
 
 # Notifies `Main` node that the button has been pressed
 signal start_game

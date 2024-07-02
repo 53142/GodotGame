@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh41nwsfy6ox2"]
+[gd_scene load_steps=9 format=3 uid="uid://bh41nwsfy6ox2"]
 
 [ext_resource type="Script" path="res://Levels/test_level.gd" id="1_i7ase"]
 [ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Texture.png" id="1_khk5l"]
 [ext_resource type="PackedScene" uid="uid://b6cm3ylmghrx4" path="res://Characters/player.tscn" id="2_ii43h"]
 [ext_resource type="PackedScene" uid="uid://b01db2a2s3to7" path="res://Characters/enemy.tscn" id="3_4ymys"]
 [ext_resource type="PackedScene" uid="uid://buygv1f2p2hyf" path="res://Characters/hud.tscn" id="4_f1u4p"]
+[ext_resource type="PackedScene" uid="uid://pxiu0flgnvc2" path="res://Interactable/checkpoint.tscn" id="6_h0dm7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dpx2c"]
 texture = ExtResource("1_khk5l")
@@ -44,5 +45,8 @@ drag_vertical_enabled = true
 position = Vector2(363, 236)
 
 [node name="HUD" parent="." instance=ExtResource("4_f1u4p")]
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_h0dm7")]
+position = Vector2(187, 173)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
