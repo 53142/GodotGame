@@ -1,11 +1,17 @@
 extends Node
 
+# Ensure to preload the Checkpoint script
+const Checkpoint = preload("res://Scripts/Interactable/checkpoint.gd")
+
+
 var current_checkpoint : Checkpoint
 var score = 0
 var player : Player
 var start_game = false
 
 
+func _ready():
+	new_game()
 
 func respawn_player():
 	score+=1
@@ -18,16 +24,10 @@ func respawn_player():
 
 
 func game_over():
-	$ScoreTimer.stop()
+	pass
 
 func new_game():
 	score = 0
 	
 	if start_game:
 		pass
-	
-func _ready():
-	new_game()
-
-func _on_hud_start_game():
-	start_game = true

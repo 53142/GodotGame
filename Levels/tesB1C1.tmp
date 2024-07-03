@@ -75,3 +75,4 @@ position = Vector2(3792, 45)
 position = Vector2(3481, 220)
 
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="hit" from="Player" to="." method="game_over"]
