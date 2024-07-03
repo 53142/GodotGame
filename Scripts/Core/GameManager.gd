@@ -1,4 +1,6 @@
 extends Node
+signal gameOver
+
 
 # Ensure to preload the Checkpoint script
 const Checkpoint = preload("res://Scripts/Interactable/checkpoint.gd")
@@ -16,7 +18,7 @@ func _ready():
 func respawn_player():
 	score+=1
 	
-	if (score > 10):
+	if (score >= 10):
 		game_over()
 	
 	if current_checkpoint != null:
@@ -24,10 +26,16 @@ func respawn_player():
 
 
 func game_over():
-	pass
+	print("1")
+	gameOver.emit()
 
 func new_game():
 	score = 0
 	
 	if start_game:
 		pass
+
+
+func _on_hud_start_game():
+	print("here")
+	start_game = true

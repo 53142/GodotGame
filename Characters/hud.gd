@@ -29,3 +29,8 @@ func _on_start_button_pressed():
 
 func _on_message_timer_timeout():
 	$Message.hide()
+
+
+func _on_test_level_game_over():
+	print("gameover")
+	show_game_over()

@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh41nwsfy6ox2"]
+[gd_scene load_steps=10 format=3 uid="uid://bh41nwsfy6ox2"]
 
 [ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Texture.png" id="1_khk5l"]
+[ext_resource type="Script" path="res://Scripts/Core/GameManager.gd" id="1_lp6v6"]
 [ext_resource type="PackedScene" uid="uid://b6cm3ylmghrx4" path="res://Characters/player.tscn" id="2_ii43h"]
 [ext_resource type="PackedScene" uid="uid://b01db2a2s3to7" path="res://Characters/enemy.tscn" id="3_4ymys"]
 [ext_resource type="PackedScene" uid="uid://buygv1f2p2hyf" path="res://Characters/hud.tscn" id="4_f1u4p"]
 [ext_resource type="PackedScene" uid="uid://pxiu0flgnvc2" path="res://Interactable/checkpoint.tscn" id="6_h0dm7"]
-
-[sub_resource type="GDScript" id="GDScript_djwjd"]
+[ext_resource type="PackedScene" uid="uid://bo4xjh16fxxk4" path="res://Interactable/finishlevel.tscn" id="7_uwwqv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dpx2c"]
 texture = ExtResource("1_khk5l")
@@ -24,7 +24,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dpx2c")
 
 [node name="TestLevel" type="Node2D"]
-script = SubResource("GDScript_djwjd")
+script = ExtResource("1_lp6v6")
 
 [node name="HUD" parent="." instance=ExtResource("4_f1u4p")]
 
@@ -68,10 +68,11 @@ position = Vector2(3196, 301)
 [node name="Enemy4" parent="." instance=ExtResource("3_4ymys")]
 position = Vector2(3845, 492)
 
-[node name="Checkpoint4" parent="." instance=ExtResource("6_h0dm7")]
-position = Vector2(3792, 45)
-
 [node name="Enemy5" parent="." instance=ExtResource("3_4ymys")]
 position = Vector2(3481, 220)
 
+[node name="FinishLevel" parent="." instance=ExtResource("7_uwwqv")]
+position = Vector2(3695, 44)
+
+[connection signal="gameOver" from="." to="HUD" method="_on_test_level_game_over"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
