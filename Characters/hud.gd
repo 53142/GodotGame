@@ -1,7 +1,5 @@
 extends CanvasLayer
-class_name HUD
 
-# Notifies `Main` node that the button has been pressed
 signal start_game
 
 func show_message(text):
@@ -24,6 +22,7 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 	
 func _on_start_button_pressed():
+	$Message.hide()
 	$StartButton.hide()
 	start_game.emit()
 
