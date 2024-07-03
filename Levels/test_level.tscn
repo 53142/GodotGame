@@ -74,5 +74,4 @@ position = Vector2(3481, 220)
 [node name="FinishLevel" parent="." instance=ExtResource("7_uwwqv")]
 position = Vector2(3695, 44)
 
-[connection signal="gameOver" from="." to="HUD" method="_on_test_level_game_over"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

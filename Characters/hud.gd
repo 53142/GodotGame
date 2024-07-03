@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name HUD
 
 signal start_game
 
@@ -19,18 +20,12 @@ func show_game_over():
 	$StartButton.show()
 
 func update_score(score):
-	$ScoreLabel.text = str(score)
+	$ScoreLabel.text = "Deaths: " + str(score)
 	
 func _on_start_button_pressed():
 	$Message.hide()
 	$StartButton.hide()
 	start_game.emit()
-	#show_game_over()
 
 func _on_message_timer_timeout():
 	$Message.hide()
-
-
-func _on_test_level_game_over():
-	print("gameover")
-	show_game_over()
