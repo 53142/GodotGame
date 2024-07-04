@@ -12,7 +12,6 @@ func show_game_over():
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
-
 	$Message.text = "Get to the end of the course while avoiding the enemies"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
