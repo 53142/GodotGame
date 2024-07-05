@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh41nwsfy6ox2"]
+[gd_scene load_steps=10 format=3 uid="uid://bh41nwsfy6ox2"]
 
 [ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Texture.png" id="1_khk5l"]
 [ext_resource type="Script" path="res://Scripts/Core/GameManager.gd" id="1_lp6v6"]
 [ext_resource type="PackedScene" uid="uid://b6cm3ylmghrx4" path="res://Characters/player.tscn" id="2_ii43h"]
 [ext_resource type="PackedScene" uid="uid://b01db2a2s3to7" path="res://Characters/enemy.tscn" id="3_4ymys"]
-[ext_resource type="PackedScene" uid="uid://buygv1f2p2hyf" path="res://Characters/hud.tscn" id="4_f1u4p"]
 [ext_resource type="PackedScene" uid="uid://pxiu0flgnvc2" path="res://Interactable/checkpoint.tscn" id="6_h0dm7"]
 [ext_resource type="PackedScene" uid="uid://bo4xjh16fxxk4" path="res://Interactable/finishlevel.tscn" id="7_uwwqv"]
 [ext_resource type="PackedScene" uid="uid://cxaw23nmeptv2" path="res://Interactable/startlevel.tscn" id="8_mwktp"]
@@ -26,8 +25,6 @@ sources/0 = SubResource("TileSetAtlasSource_dpx2c")
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_lp6v6")
-
-[node name="HUD" parent="." instance=ExtResource("4_f1u4p")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ghpjm")
@@ -76,6 +73,4 @@ position = Vector2(3481, 220)
 position = Vector2(3695, 44)
 
 [node name="StartLevel" parent="." instance=ExtResource("8_mwktp")]
-position = Vector2(3773, 44)
-
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+position = Vector2(16, 240)

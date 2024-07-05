@@ -42,3 +42,6 @@ func _physics_process(delta):
 
 func die():
 	GameManager.respawn_player()
+
+func start_game_func():
+	start_game = true

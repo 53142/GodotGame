@@ -3,6 +3,10 @@ class_name HUD
 
 signal start_game
 
+func _ready():
+	GameManager.death_changed.connect(_on_death_changed)
+	GameManager.show_game_over.connect(_on_show_game_over)
+	
 func show_message(text):
 	$Message.text = text
 	$Message.show()
@@ -24,7 +28,14 @@ func update_deaths(deaths):
 func _on_start_button_pressed():
 	$Message.hide()
 	$StartButton.hide()
-	start_game.emit()
+	#start_game.emit()
+	GameManager.start_game()
 
 func _on_message_timer_timeout():
 	$Message.hide()
+	
+func _on_death_changed(deaths):
+	update_deaths(deaths)
+	
+func _on_show_game_over():
+	show_game_over()

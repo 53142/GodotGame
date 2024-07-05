@@ -1,16 +1,17 @@
 extends Node
-
+signal death_changed(deaths)
+signal show_game_over
 
 # Ensure to preload the Checkpoint script
 const Checkpoint = preload("res://Scripts/Interactable/checkpoint.gd")
 const StartLevel = preload("res://Interactable/startlevel.gd")
-
+const Player = preload("res://Characters/player.gd")
 
 var current_checkpoint : Checkpoint
 var start_location : StartLevel
 var deaths = 0
 var player : Player
-var hud : HUD
+#var hud : HUD
 
 var current_scene = null
 
@@ -18,8 +19,8 @@ var current_scene = null
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
-	
-	hud = get_node("/root/TestLevel/HUD")
+	print(current_scene.name)
+	#hud = get_node("/Main/HUD")
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
@@ -36,7 +37,7 @@ func goto_scene(path):
 
 func _deferred_goto_scene(path):
 	# It is now safe to remove the current scene.
-	current_scene.free()
+	current_scene.queue_free()
 
 	# Load the new scene.
 	var s = ResourceLoader.load(path)
@@ -49,16 +50,14 @@ func _deferred_goto_scene(path):
 
 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 	get_tree().current_scene = current_scene
-
-
-
+	
 
 
 
 
 func respawn_player():
 	deaths+=1
-	hud.update_deaths(deaths)
+	death_changed.emit(deaths)
 	
 	# Set max # of deaths
 	if (deaths >= 5):
@@ -69,22 +68,23 @@ func respawn_player():
 	else:
 		player.position = start_location.global_position
 
-func _on_hud_start_game():	
-	$Player.start_game = true
+func start_game():
+	player.start_game = true
 
 func game_over():
 	player.position = start_location.global_position
 	current_checkpoint = null
 	
 	deaths = 0
-	hud.update_deaths(deaths)
-	#get_node("/root/TestLevel/Player").start_game = false
+	death_changed.emit(deaths)
 	player.start_game = false
-	hud.show_game_over()
+	
+	show_game_over.emit()
+	#hud.show_game_over()
 
 func level_complete():
 	current_checkpoint = null
 	
 	deaths = 0
-	hud.update_deaths(deaths)
 	player.start_game = false
+	_ready()
