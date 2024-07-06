@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbp12bttiq3t1"]
+[gd_scene load_steps=8 format=3 uid="uid://cbp12bttiq3t1"]
 
 [ext_resource type="Script" path="res://Scripts/Core/GameManager.gd" id="1_w5qqt"]
-[ext_resource type="PackedScene" uid="uid://buygv1f2p2hyf" path="res://Characters/hud.tscn" id="2_2h6aa"]
 [ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Texture.png" id="3_5quog"]
 [ext_resource type="PackedScene" uid="uid://b6cm3ylmghrx4" path="res://Characters/player.tscn" id="4_ktklw"]
 [ext_resource type="PackedScene" uid="uid://bo4xjh16fxxk4" path="res://Interactable/finishlevel.tscn" id="7_ckfbv"]
@@ -25,8 +24,6 @@ sources/0 = SubResource("TileSetAtlasSource_dpx2c")
 [node name="2" type="Node2D"]
 script = ExtResource("1_w5qqt")
 
-[node name="HUD" parent="." instance=ExtResource("2_2h6aa")]
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ghpjm")
 format = 2
@@ -49,5 +46,3 @@ position = Vector2(286, -45)
 
 [node name="StartLevel" parent="." instance=ExtResource("8_ru6xs")]
 position = Vector2(0, -188)
-
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

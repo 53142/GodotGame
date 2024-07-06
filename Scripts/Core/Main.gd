@@ -2,6 +2,7 @@ extends Node2D
 class_name Main
 
 var current_level = null
+var current_index = null
 var level_paths = [
 	"res://Levels/test_level.tscn",
 	"res://Levels/2.tscn",
@@ -11,9 +12,13 @@ var level_paths = [
 
 func _ready():
 	load_level(0)  # Start with the first level
-	#finishlevel.advance_next_level.connect(_on_advance_next_level)
+	GameManager.advance_next_level.connect(_on_advance_next_level)
+
 
 func load_level(index):
+	current_index = index
+	
+	
 	if current_level != null:
 		current_level.queue_free()
 		current_level = null
@@ -33,11 +38,6 @@ func load_level(index):
 func next_level():
 	if current_level == null:
 		print("No current level loaded.")
-		return
-	
-	var current_index = level_paths.find(current_level.filename)
-	if current_index == -1:
-		print("Current level path not found in level_paths.")
 		return
 	
 	var next_index = current_index + 1

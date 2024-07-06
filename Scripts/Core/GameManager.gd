@@ -1,6 +1,7 @@
 extends Node
 signal death_changed(deaths)
 signal show_game_over
+signal advance_next_level
 
 # Ensure to preload the Checkpoint script
 const Checkpoint = preload("res://Scripts/Interactable/checkpoint.gd")
@@ -9,10 +10,9 @@ const Player = preload("res://Characters/player.gd")
 
 var current_checkpoint : Checkpoint
 var start_location : StartLevel
-var deaths = 0
 var player : Player
-#var hud : HUD
 
+var deaths = 0
 var current_scene = null
 
 
@@ -73,18 +73,32 @@ func start_game():
 
 func game_over():
 	player.position = start_location.global_position
+	
+	# Remove current checkpoint
 	current_checkpoint = null
 	
+	print("children: ", get_tree())
+	for child in get_children():
+		if child is Checkpoint:
+			print(child.activated)
+			child.activated = false
+	
+	
+	
 	deaths = 0
+	# Update HUD
 	death_changed.emit(deaths)
 	player.start_game = false
 	
 	show_game_over.emit()
 	#hud.show_game_over()
 
+#func level_complete():
+#	current_checkpoint = null
+#	
+#	deaths = 0
+#	player.start_game = false
+#	_ready()
+
 func level_complete():
-	current_checkpoint = null
-	
-	deaths = 0
-	player.start_game = false
-	_ready()
+	advance_next_level.emit()

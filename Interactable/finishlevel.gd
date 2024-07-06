@@ -12,7 +12,8 @@ func activate():
 	#GameManager.level_complete()
 	
 	# Advance to next level
-	advance_next_level.emit()
+	#advance_next_level.emit()
+	GameManager.level_complete()
 	
 func _on_area_2d_area_entered(area):
 	if area.get_parent() is Player && !activated:
