@@ -1,5 +1,4 @@
 extends Node2D
-class_name Main
 
 var current_level = null
 var current_index = null
@@ -20,6 +19,7 @@ func load_level(index):
 	
 	
 	if current_level != null:
+		print("Freeing current level: ", current_level)
 		current_level.queue_free()
 		current_level = null
 	
@@ -31,9 +31,11 @@ func load_level(index):
 	# Instance the level and add it to the scene tree
 	current_level = level_scene.instantiate()
 	add_child(current_level)
+	GameManager.current_level = current_level
 	
+	if index > 0:
+		$HUD.show_start_screen()
 	# Connect any signals from the level to the main script if needed
-	# current_level.connect("signal_name", self, "_on_signal_received")
 
 func next_level():
 	if current_level == null:

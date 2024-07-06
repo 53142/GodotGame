@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbp12bttiq3t1"]
+[gd_scene load_steps=9 format=3 uid="uid://cbp12bttiq3t1"]
 
 [ext_resource type="Script" path="res://Scripts/Core/GameManager.gd" id="1_w5qqt"]
 [ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Texture.png" id="3_5quog"]
 [ext_resource type="PackedScene" uid="uid://b6cm3ylmghrx4" path="res://Characters/player.tscn" id="4_ktklw"]
+[ext_resource type="PackedScene" uid="uid://b01db2a2s3to7" path="res://Characters/enemy.tscn" id="6_jmhq4"]
 [ext_resource type="PackedScene" uid="uid://bo4xjh16fxxk4" path="res://Interactable/finishlevel.tscn" id="7_ckfbv"]
 [ext_resource type="PackedScene" uid="uid://cxaw23nmeptv2" path="res://Interactable/startlevel.tscn" id="8_ru6xs"]
 
@@ -28,7 +29,7 @@ script = ExtResource("1_w5qqt")
 tile_set = SubResource("TileSet_ghpjm")
 format = 2
 layer_0/name = "Ground"
-layer_0/tile_data = PackedInt32Array(196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131070, 65536, 0, 131071, 65536, 0, 65536, 65536, 0, 65537, 65536, 0)
+layer_0/tile_data = PackedInt32Array(196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131070, 65536, 0, 131071, 65536, 0, 65536, 65536, 0, 65537, 65536, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -262140, 65536, 0, -262139, 65536, 0, -262138, 65536, 0, -262137, 65536, 0, -262136, 65536, 0, -589823, 65536, 0, -589824, 65536, 0, -524289, 65536, 0, -524290, 65536, 0, -524291, 65536, 0, -917500, 65536, 0, -917499, 65536, 0, -917498, 65536, 0, -917497, 65536, 0, -917496, 65536, 0, -917495, 65536, 0, -917494, 65536, 0, -917493, 65536, 0, -917492, 65536, 0, -917491, 65536, 0, -917490, 65536, 0, -917489, 65536, 0, -917488, 65536, 0, -917487, 65536, 0, -917480, 65536, 0, -917479, 65536, 0, -917478, 65536, 0, -917477, 65536, 0, -917476, 65536, 0, -917481, 65536, 0, -917482, 65536, 0, -917475, 65536, 0, -917474, 65536, 0, -917473, 65536, 0, -917472, 65536, 0, -917468, 0, 0, -983004, 0, 0, -1048540, 0, 0, -1179612, 65536, 0, -1114076, 0, 0, -917467, 0, 0, -983003, 0, 0, -1048539, 0, 0, -1114075, 0, 0, -1179611, 65536, 0, -1179609, 65536, 0, -1114073, 0, 0, -1048537, 0, 0, -1048538, 0, 0, -983002, 0, 0, -917466, 0, 0, -917465, 0, 0, -983001, 0, 0, -1114074, 0, 0, -1179610, 65536, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_ktklw")]
 
@@ -42,7 +43,13 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="FinishLevel" parent="." instance=ExtResource("7_ckfbv")]
-position = Vector2(286, -45)
+position = Vector2(617, -306)
 
 [node name="StartLevel" parent="." instance=ExtResource("8_ru6xs")]
 position = Vector2(0, -188)
+
+[node name="Enemy" parent="." instance=ExtResource("6_jmhq4")]
+position = Vector2(142, -244)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_jmhq4")]
+position = Vector2(426, -244)

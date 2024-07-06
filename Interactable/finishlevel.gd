@@ -7,7 +7,6 @@ var activated = false
 func activate():
 	activated = true
 	$AnimationPlayer.play("Activated")
-	print("level finished")
 	#GameManager.goto_scene("res://Levels/2.tscn")
 	#GameManager.level_complete()
 	

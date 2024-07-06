@@ -5,7 +5,7 @@
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_um1hj")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="DeathLabel" type="Label" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

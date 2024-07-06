@@ -12,18 +12,21 @@ func show_message(text):
 	$Message.show()
 	$MessageTimer.start()
 
-func show_game_over():
-	show_message("Game Over")
-	# Wait until the MessageTimer has counted down.
-	await $MessageTimer.timeout
+func show_start_screen():
 	$Message.text = "Get to the end of the course while avoiding the enemies"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
 	$StartButton.show()
 
+func show_game_over():
+	show_message("Game Over")
+	# Wait until the MessageTimer has counted down.
+	await $MessageTimer.timeout
+	show_start_screen()
+
 func update_deaths(deaths):
-	$ScoreLabel.text = "Deaths: " + str(deaths)
+	$DeathLabel.text = "Deaths: " + str(deaths)
 	
 func _on_start_button_pressed():
 	$Message.hide()
