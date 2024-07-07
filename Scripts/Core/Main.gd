@@ -13,7 +13,6 @@ func _ready():
 	load_level(0)  # Start with the first level
 	GameManager.advance_next_level.connect(_on_advance_next_level)
 
-
 func load_level(index):
 	current_index = index
 	
@@ -22,7 +21,6 @@ func load_level(index):
 		print("Freeing current level: ", current_level)
 		current_level.queue_free()
 		current_level = null
-	
 	
 	# Load the level scene
 	print("Loading level: ", level_paths[index])

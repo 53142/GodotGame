@@ -17,32 +17,47 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		
+	else:
+		velocity.y=0
 		# Cap velocity at 1000
 		if velocity.y > 1000:
 			velocity.y = 1000
 			
 	if start_game:
+		# Debug keys
+		if Input.is_action_just_pressed("reset_deaths"):
+			GameManager.deaths = 0
 		if Input.is_action_just_pressed("debug_next_level"):
 			GameManager.level_complete()
 		
-		# Handle jump.
+		
+		# Handle jump
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
+
 		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		var direction = Input.get_axis("left", "right")
+		
+		var direction = Input.get_action_strength("right") - Input.get_action_strength("left")
+		var direction2 = Input.get_action_strength("right(arrow)") - Input.get_action_strength("left(arrow)")
+		
+		if abs(direction2) > abs(direction):
+			direction = direction2
+		
 		if direction:
-			velocity.x = direction * SPEED
+			if !Input.is_action_pressed("move_slower"):
+				velocity.x = direction * SPEED
+			else:
+				print("pressed")
+				velocity.x = direction * SPEED * 0.3
+				velocity.y *= 0.9
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 		move_and_slide()
 	
-	if position.y >= 600:
+	if position.y >= 650:
 		die()
-
 func die():
 	GameManager.respawn_player()
 
