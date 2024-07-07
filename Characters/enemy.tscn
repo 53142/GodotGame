@@ -26,7 +26,7 @@ shape = SubResource("RectangleShape2D_2qv7p")
 shape = SubResource("RectangleShape2D_8ounl")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-27, 1)
+position = Vector2(-21, 1)
 target_position = Vector2(0, 29)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -75,7 +75,7 @@ position = Vector2(3481, 220)
 position = Vector2(3695, 46)
 
 [node name="StartLevel" parent="." instance=ExtResource("8_mwktp")]
-position = Vector2(3759, 34)
+position = Vector2(16, 240)
 
 [node name="Spike" parent="." instance=ExtResource("8_02au3")]
 position = Vector2(677, 254)

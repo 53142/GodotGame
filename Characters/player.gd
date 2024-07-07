@@ -23,6 +23,9 @@ func _physics_process(delta):
 			velocity.y = 1000
 			
 	if start_game:
+		if Input.is_action_just_pressed("debug_next_level"):
+			GameManager.level_complete()
+		
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY

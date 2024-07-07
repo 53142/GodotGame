@@ -30,7 +30,8 @@ func load_level(index):
 	
 	# Instance the level and add it to the scene tree
 	current_level = level_scene.instantiate()
-	add_child(current_level)
+	#add_child(current_level)
+	call_deferred("add_child", current_level)
 	GameManager.current_level = current_level
 	
 	if index > 0:
