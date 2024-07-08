@@ -25,10 +25,10 @@ func _physics_process(delta):
 			
 	if start_game:
 		# Debug keys
-		if Input.is_action_just_pressed("reset_deaths"):
-			GameManager.deaths = 0
-		if Input.is_action_just_pressed("debug_next_level"):
-			GameManager.level_complete()
+		#if Input.is_action_just_pressed("reset_deaths"):
+		#	GameManager.deaths = 0
+		#if Input.is_action_just_pressed("debug_next_level"):
+		#	GameManager.level_complete()
 		
 		
 		# Handle jump
@@ -48,7 +48,6 @@ func _physics_process(delta):
 			if !Input.is_action_pressed("move_slower"):
 				velocity.x = direction * SPEED
 			else:
-				print("pressed")
 				velocity.x = direction * SPEED * 0.3
 				velocity.y *= 0.9
 		else:

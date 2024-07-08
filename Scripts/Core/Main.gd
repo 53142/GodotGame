@@ -1,4 +1,5 @@
 extends Node2D
+class_name Main
 
 var current_level = null
 var current_index = null
@@ -46,6 +47,9 @@ func next_level():
 		load_level(next_index)
 	else:
 		print("No more levels!")
+		$HUD.show_finish_game()
+		# Load the first level again
+		load_level(0)
 
 func _on_advance_next_level():
 	next_level()

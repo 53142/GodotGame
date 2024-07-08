@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://buygv1f2p2hyf"]
+[gd_scene load_steps=3 format=3 uid="uid://buygv1f2p2hyf"]
 
 [ext_resource type="Script" path="res://Characters/hud.gd" id="1_um1hj"]
+[ext_resource type="PackedScene" uid="uid://bq2sqb1u1l5ve" path="res://addons/virtual_joystick/test/test.tscn" id="2_awvts"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_um1hj")
@@ -52,6 +53,8 @@ theme_override_font_sizes/font_size = 50
 text = "Start"
 
 [node name="MessageTimer" type="Timer" parent="."]
+
+[node name="Test" parent="." instance=ExtResource("2_awvts")]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

@@ -22,6 +22,14 @@ func show_game_over():
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 	show_start_screen()
+	
+func show_finish_game():
+	$Message.text = "You won!"
+	$Message.show()
+	await get_tree().create_timer(2.0).timeout
+	$StartButton.show()
+	await get_tree().create_timer(1.0).timeout
+	
 
 func update_deaths(deaths):
 	$DeathLabel.text = "Deaths: " + str(deaths)

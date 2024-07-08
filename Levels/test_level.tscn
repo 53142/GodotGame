@@ -115,3 +115,24 @@ position = Vector2(2597, 238)
 
 [node name="Spike13" parent="." instance=ExtResource("8_02au3")]
 position = Vector2(2047, 110)
+
+[node name="Enemy6" parent="." instance=ExtResource("3_4ymys")]
+position = Vector2(862, 236)
+
+[node name="Spike14" parent="." instance=ExtResource("8_02au3")]
+position = Vector2(3382, 238)
+
+[node name="Spike18" parent="." instance=ExtResource("8_02au3")]
+position = Vector2(3608, 238)
+
+[node name="Spike19" parent="." instance=ExtResource("8_02au3")]
+position = Vector2(3573, 238)
+
+[node name="Spike15" parent="." instance=ExtResource("8_02au3")]
+position = Vector2(3857, 302)
+
+[node name="Spike16" parent="." instance=ExtResource("8_02au3")]
+position = Vector2(3994, 222)
+
+[node name="Spike17" parent="." instance=ExtResource("8_02au3")]
+position = Vector2(3770, 62)
