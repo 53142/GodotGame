@@ -34,6 +34,12 @@ func _physics_process(delta):
 			GameManager.level_complete()
 		
 		
+		if Input.is_action_just_pressed("save_game"):
+			GameManager.save_game()
+			
+		if Input.is_action_just_pressed("load_game"):
+			GameManager.load_game()
+		
 		# Handle jump
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
@@ -74,6 +80,8 @@ func save():
 		"pos_y" : position.y,
 		"speed" : SPEED,
 		"jump_velocity" : JUMP_VELOCITY,
-		"start_game" : start_game
+		"start_game" : start_game,
+		"max_lives" : max_lives
+		#remember to keep track of deaths here
 	}
 	return save_dict
