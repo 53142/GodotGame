@@ -6,8 +6,11 @@ var current_index = null
 var level_paths = [
 	"res://Levels/test_level.tscn",
 	"res://Levels/2.tscn",
-	# Add more levels here
+	"res://Levels/3.tscn"
 ]
+
+const max_scores = [35, 35]
+
 
 
 func _ready():
@@ -40,26 +43,27 @@ func load_level(index):
 func next_level():
 	var next_index = current_index + 1
 	if next_index < level_paths.size():
-		$HUD.show_final_score(GameManager.score, true)
-		await get_tree().create_timer(2.0).timeout
-		
-		# Reset score and deaths
-		GameManager.score = 0
-		GameManager.deaths = 0
 		load_level(next_index)
 	else:
 		print("No more levels!")
 		$HUD.show_finish_game()
 		# Load the first level again
 		
-		# Reset score and deaths
-		GameManager.score = 0
-		GameManager.deaths = 0
-		$HUD.update_score(GameManager.score)
-		$HUD.update_deaths(GameManager.deaths)
+		
 		
 		
 		load_level(0)
 
 func _on_advance_next_level():
+	var got_max_score = false
+	if GameManager.score == max_scores[current_index]:
+		got_max_score = true
+	$HUD.show_final_score(GameManager.score, got_max_score)
+	await get_tree().create_timer(2.0).timeout
+	
+	# Reset score and deaths
+	GameManager.score = 0
+	GameManager.deaths = 0
+	$HUD.update_score(GameManager.score)
+	$HUD.update_deaths(GameManager.deaths)
 	next_level()

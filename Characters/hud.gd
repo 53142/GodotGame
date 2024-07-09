@@ -50,8 +50,11 @@ func _on_death_changed(deaths):
 func _on_show_game_over():
 	show_game_over()
 
-func _on_score_changed(score):
+func update_score(score):
 	$ScoreLabel.text = "Score: " + str(score)
+	
+func _on_score_changed(score):
+	update_score(score)
 	
 func show_final_score(score, got_max_score):
 	$Message.show()
@@ -59,4 +62,3 @@ func show_final_score(score, got_max_score):
 		$Message.text = "You got the max score: " + str(score) + "/" + str(score) + "!"
 	else:
 		$Message.text = "You got a score of: " + str(score)
-	await get_tree().create_timer(2.0).timeout
