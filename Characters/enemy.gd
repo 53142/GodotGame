@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 
-var speed = -60.0
+var speed = -30.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@export var speed_fast := true
 var facing_right = false
 
 func _physics_process(delta):
@@ -32,3 +33,7 @@ func flip():
 func _on_hitbox_area_entered(area):
 	if area.get_parent() is Player:
 		area.get_parent().die()
+
+func _ready():
+	if speed_fast:
+		speed = -60

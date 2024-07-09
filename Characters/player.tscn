@@ -3,25 +3,25 @@
 [ext_resource type="Texture2D" uid="uid://cwj0oyo61o7f6" path="res://Textures/Player.png" id="1_2igao"]
 [ext_resource type="Script" path="res://Characters/player.gd" id="1_xisjv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_668av"]
-size = Vector2(32, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2f6l"]
-size = Vector2(32, 32)
+size = Vector2(30, 30)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_668av"]
+size = Vector2(30, 30)
+
+[node name="Player" type="CharacterBody2D" groups=["Persist"]]
 collision_layer = 2
 script = ExtResource("1_xisjv")
+
+[node name="Player" type="Sprite2D" parent="."]
+scale = Vector2(0.19, 0.19)
+texture = ExtResource("1_2igao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k2f6l")
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_668av")
-
-[node name="Player" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_2igao")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_k2f6l")

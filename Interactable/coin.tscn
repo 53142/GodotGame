@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_w518r"]
 radius = 5.0
 
-[node name="Coin" type="Node2D"]
+[node name="Coin" type="Node2D" groups=["Persist"]]
 script = ExtResource("1_flg2c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

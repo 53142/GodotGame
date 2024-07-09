@@ -43,7 +43,7 @@ _data = {
 "RESET": SubResource("Animation_pem4e")
 }
 
-[node name="Checkpoint" type="Node2D"]
+[node name="Checkpoint" type="Node2D" groups=["Persist"]]
 script = ExtResource("1_ajb0h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

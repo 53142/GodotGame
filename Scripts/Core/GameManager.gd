@@ -25,7 +25,8 @@ func respawn_player():
 	death_changed.emit(deaths)
 	
 	# Set max # of deaths
-	if (deaths >= 5):
+	if (deaths >= player.max_lives):
+		print("game_over")
 		was_game_over = true
 		game_over()
 	

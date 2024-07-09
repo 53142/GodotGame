@@ -43,7 +43,7 @@ _data = {
 "RESET": SubResource("Animation_pem4e")
 }
 
-[node name="FinishLevel" type="Node2D"]
+[node name="FinishLevel" type="Node2D" groups=["Persist"]]
 script = ExtResource("1_io7q2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

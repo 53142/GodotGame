@@ -7,11 +7,14 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var start_game = false
 
+@export var max_lives := 5
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	GameManager.player = self
+	print("Max lives: ", max_lives)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -62,3 +65,15 @@ func die():
 
 func start_game_func():
 	start_game = true
+
+func save():
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_y" : position.y,
+		"speed" : SPEED,
+		"jump_velocity" : JUMP_VELOCITY,
+		"start_game" : start_game
+	}
+	return save_dict

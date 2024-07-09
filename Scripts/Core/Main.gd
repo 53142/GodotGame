@@ -67,3 +67,8 @@ func _on_advance_next_level():
 	$HUD.update_score(GameManager.score)
 	$HUD.update_deaths(GameManager.deaths)
 	next_level()
+	
+	
+	
+func save_game():
+	var save_game = FileAccess.open("user://platformergame.save", FileAccess.WRITE)

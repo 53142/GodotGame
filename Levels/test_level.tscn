@@ -37,6 +37,7 @@ layer_0/tile_data = PackedInt32Array(1048576, 65536, 0, 1114112, 0, 0, 1179648, 
 
 [node name="Player" parent="." instance=ExtResource("2_ii43h")]
 position = Vector2(16, 240)
+max_lives = 3
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
