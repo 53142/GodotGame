@@ -1,5 +1,7 @@
 extends Node
 signal death_changed(deaths)
+signal score_changed(score)
+
 signal show_game_over
 signal advance_next_level
 
@@ -13,6 +15,8 @@ var start_location : StartLevel
 var player : Player
 
 var deaths = 0
+var score = 0
+
 var current_level = null
 var was_game_over = false
 
@@ -53,20 +57,36 @@ func game_over():
 	for child in current_level.get_children():
 		if child is Checkpoint:
 			child.activated = false
+		
+	
+	# Set all checkpoints to deactivated
+	for child in current_level.get_children():
+		if child is Coin:
+			child.can_score = true
+			child.show()
 
 
 	deaths = 0
+	score = 0
 	
 	
 	# Update HUD
 	death_changed.emit(deaths)
+	score_changed.emit(score)
 	player.start_game = false
 	
 	show_game_over.emit()
 
 func level_complete():
 	# Reset deaths
-	deaths = 0
-	death_changed.emit(deaths)
+	#deaths = 0
+	#death_changed.emit(deaths)
+	# Reset score
+	#score = 0
+	#score_changed.emit(score)
 	
 	advance_next_level.emit()
+
+func increment_score():
+	score+=1
+	score_changed.emit(score)

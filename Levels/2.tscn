@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbp12bttiq3t1"]
 
 [ext_resource type="Script" path="res://Scripts/Core/GameManager.gd" id="1_w5qqt"]
-[ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Texture.png" id="3_5quog"]
+[ext_resource type="Texture2D" uid="uid://xqqtjecaehoj" path="res://Textures/Texture.png" id="3_5quog"]
 [ext_resource type="PackedScene" uid="uid://b6cm3ylmghrx4" path="res://Characters/player.tscn" id="4_ktklw"]
 [ext_resource type="PackedScene" uid="uid://b01db2a2s3to7" path="res://Characters/enemy.tscn" id="6_jmhq4"]
 [ext_resource type="PackedScene" uid="uid://bgb3qhxf2avfn" path="res://Interactable/spike.tscn" id="7_73ms8"]

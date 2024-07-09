@@ -3,6 +3,8 @@ class_name HUD
 
 func _ready():
 	GameManager.death_changed.connect(_on_death_changed)
+	GameManager.score_changed.connect(_on_score_changed)
+	
 	GameManager.show_game_over.connect(_on_show_game_over)
 	
 func show_message(text):
@@ -47,3 +49,14 @@ func _on_death_changed(deaths):
 	
 func _on_show_game_over():
 	show_game_over()
+
+func _on_score_changed(score):
+	$ScoreLabel.text = "Score: " + str(score)
+	
+func show_final_score(score, got_max_score):
+	$Message.show()
+	if got_max_score:
+		$Message.text = "You got the max score: " + str(score) + "/" + str(score) + "!"
+	else:
+		$Message.text = "You got a score of: " + str(score)
+	await get_tree().create_timer(2.0).timeout
