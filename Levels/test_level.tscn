@@ -42,7 +42,7 @@ max_lives = 3
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["Persistent"]]
 position = Vector2(16, 240)
 process_callback = 0
 position_smoothing_enabled = true
@@ -77,7 +77,7 @@ position = Vector2(3481, 220)
 position = Vector2(3695, 46)
 
 [node name="StartLevel" parent="." instance=ExtResource("8_mwktp")]
-position = Vector2(3870, 109)
+position = Vector2(16, 240)
 
 [node name="Spike" parent="." instance=ExtResource("8_02au3")]
 position = Vector2(677, 254)

@@ -6,6 +6,7 @@ signal hit
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var start_game = false
+var deaths = 0
 
 @export var max_lives := 5
 
@@ -67,6 +68,7 @@ func _physics_process(delta):
 	if position.y >= 650:
 		die()
 func die():
+	deaths+=1
 	GameManager.respawn_player()
 
 func start_game_func():
@@ -81,7 +83,7 @@ func save():
 		"speed" : SPEED,
 		"jump_velocity" : JUMP_VELOCITY,
 		"start_game" : start_game,
-		"max_lives" : max_lives
-		#remember to keep track of deaths here
+		"max_lives" : max_lives,
+		"deaths" : deaths
 	}
 	return save_dict

@@ -14,18 +14,16 @@ var current_checkpoint : Checkpoint
 var start_location : StartLevel
 var player : Player
 
-var deaths = 0
 var score = 0
 
 var current_level = null
 var was_game_over = false
 
 func respawn_player():
-	deaths+=1
-	death_changed.emit(deaths)
+	death_changed.emit(player.deaths)
 	
 	# Set max # of deaths
-	if (deaths >= player.max_lives):
+	if (player.deaths >= player.max_lives):
 		print("game_over")
 		was_game_over = true
 		game_over()
@@ -67,12 +65,12 @@ func game_over():
 			child.show()
 
 
-	deaths = 0
+	player.deaths = 0
 	score = 0
 	
 	
 	# Update HUD
-	death_changed.emit(deaths)
+	death_changed.emit(player.deaths)
 	score_changed.emit(score)
 	player.start_game = false
 	
@@ -80,8 +78,8 @@ func game_over():
 
 func level_complete():
 	# Reset deaths
-	#deaths = 0
-	#death_changed.emit(deaths)
+	#player.deaths = 0
+	#death_changed.emit(player.deaths)
 	# Reset score
 	#score = 0
 	#score_changed.emit(score)
@@ -98,7 +96,6 @@ func save_game():
 	var save_game = FileAccess.open("user://platformergame.save", FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
-		print("node")
 		# Check the node is an instanced scene so it can be instanced again during load.
 		if node.scene_file_path.is_empty():
 			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
@@ -142,7 +139,6 @@ func load_game():
 	# Load the file line by line and process that dictionary to restore
 	# the object it represents.
 	var save_game = FileAccess.open("user://platformergame.save", FileAccess.READ)
-	print("save_game", save_game())
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()
 
@@ -162,9 +158,24 @@ func load_game():
 		var new_object = load(node_data["filename"]).instantiate()
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+		print("filename: ", node_data["filename"])
+		print(new_object.position)
 
 		# Now we set the remaining variables.
 		for i in node_data.keys():
 			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
 				continue
 			new_object.set(i, node_data[i])
+		
+		# Call _ready function if node has it
+		if new_object.has_method("_ready"):
+			new_object._ready()
+		
+		# If node is Player, add RemoteTransform2D node
+		if node_data["filename"] == "res://Characters/player.tscn":
+			new_object.add_child()
+			print("name",new_object.get_child(1).name)
+	
+	# Update HUD
+	death_changed.emit(player.deaths)
+	score_changed.emit(score)
