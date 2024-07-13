@@ -13,6 +13,7 @@ config_version=5
 config/name="Platformer Game"
 run/main_scene="res://Levels/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.154876, 0.154876, 0.154876, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,9 +24,9 @@ GameManager="*res://Scripts/Core/GameManager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/mode=4
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_height"
 window/stretch/scale=2.0
 
 [input]

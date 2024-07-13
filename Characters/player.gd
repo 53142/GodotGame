@@ -7,6 +7,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var start_game = false
 var deaths = 0
+var score = 0
 
 @export var max_lives := 5
 
@@ -14,6 +15,7 @@ var deaths = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	GameManager.score = score
 	GameManager.player = self
 	print("Max lives: ", max_lives)
 
@@ -83,6 +85,7 @@ func save():
 		"jump_velocity" : JUMP_VELOCITY,
 		"start_game" : start_game,
 		"max_lives" : max_lives,
-		"deaths" : deaths
+		"deaths" : deaths,
+		"score" : score
 	}
 	return save_dict

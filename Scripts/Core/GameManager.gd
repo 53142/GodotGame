@@ -90,6 +90,9 @@ func increment_score():
 	score+=1
 	score_changed.emit(score)
 
+func reset_deaths():
+	player.deaths = 0
+	death_changed.emit(player.deaths)
 
 func save_game():
 	print("saving game")
@@ -166,16 +169,7 @@ func load_game():
 		
 		# Call _ready function if node has it
 		if new_object.has_method("_ready"):
-			new_object._ready()
-		
-		# If node is Player, add RemoteTransform2D node
-		if node_data["filename"] == "res://Characters/player.tscn":
-			var cameraPlayerMover = RemoteTransform2D.new()
-			cameraPlayerMover.remote_path = "Camera2D"
-			print(get_node("Camera2D"))
-			new_object.add_child(cameraPlayerMover)
-	
+			new_object._ready()	
 	# Update HUD
 	death_changed.emit(player.deaths)
 	score_changed.emit(score)
-	
