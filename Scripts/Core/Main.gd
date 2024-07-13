@@ -63,7 +63,7 @@ func _on_advance_next_level():
 	
 	# Reset score and deaths
 	GameManager.score = 0
-	GameManager.deaths = 0
+	#player.deaths = 0
 	$HUD.update_score(GameManager.score)
-	$HUD.update_deaths(GameManager.deaths)
+	#$HUD.update_deaths(GameManager.deaths)
 	next_level()
