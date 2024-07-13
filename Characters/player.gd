@@ -42,7 +42,7 @@ func _physics_process(delta):
 			GameManager.load_game()
 		
 		# Handle jump
-		if Input.is_action_just_pressed("jump") and is_on_floor():
+		if (Input.is_action_just_pressed("jump") || Input.is_action_just_pressed("jump(arrow)")) && is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
 
@@ -59,7 +59,6 @@ func _physics_process(delta):
 				velocity.x = direction * SPEED
 			else:
 				velocity.x = direction * SPEED * 0.3
-				velocity.y *= 0.9
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -78,7 +77,7 @@ func save():
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
-		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_x" : position.x,
 		"pos_y" : position.y,
 		"speed" : SPEED,
 		"jump_velocity" : JUMP_VELOCITY,

@@ -36,7 +36,10 @@ func _on_hitbox_area_entered(area):
 
 func _ready():
 	if speed_fast:
-		speed = -60
+		if facing_right:
+			speed = 60
+		else:
+			speed = -60
 
 
 func save():

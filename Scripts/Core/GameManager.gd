@@ -5,7 +5,7 @@ signal score_changed(score)
 signal show_game_over
 signal advance_next_level
 
-# Ensure to preload the Checkpoint script
+# Preload scripts
 const Checkpoint = preload("res://Scripts/Interactable/checkpoint.gd")
 const StartLevel = preload("res://Interactable/startlevel.gd")
 const Player = preload("res://Characters/player.gd")
@@ -127,10 +127,7 @@ func load_game():
 		print("error")
 		return # Error! We don't have a save to load.
 
-	# We need to revert the game state so we're not cloning objects
-	# during loading. This will vary wildly depending on the needs of a
-	# project, so take care with this step.
-	# For our example, we will accomplish this by deleting saveable objects.
+	# We need to revert the game state so we're not cloning objects during loading
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
 		print("freeing")
@@ -173,9 +170,12 @@ func load_game():
 		
 		# If node is Player, add RemoteTransform2D node
 		if node_data["filename"] == "res://Characters/player.tscn":
-			new_object.add_child()
-			print("name",new_object.get_child(1).name)
+			var cameraPlayerMover = RemoteTransform2D.new()
+			cameraPlayerMover.remote_path = "Camera2D"
+			print(get_node("Camera2D"))
+			new_object.add_child(cameraPlayerMover)
 	
 	# Update HUD
 	death_changed.emit(player.deaths)
 	score_changed.emit(score)
+	

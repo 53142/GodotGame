@@ -42,7 +42,7 @@ max_lives = 3
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="." groups=["Persistent"]]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(16, 240)
 process_callback = 0
 position_smoothing_enabled = true
