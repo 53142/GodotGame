@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	GameManager.score = score
+	# fix bug with score always resetting to 0 even if had score when loading save
 	GameManager.player = self
 	print("Max lives: ", max_lives)
 

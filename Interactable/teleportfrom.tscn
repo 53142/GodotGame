@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvo34ofbvm0jy"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable/teleportfrom.gd" id="1_04yel"]
+[ext_resource type="Texture2D" uid="uid://577x2y3g2hia" path="res://Textures/TeleportFrom.png" id="2_38jsi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdupn"]
+size = Vector2(50, 16.5)
+
+[node name="TeleportFrom" type="Node2D"]
+script = ExtResource("1_04yel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_38jsi")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_pdupn")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
