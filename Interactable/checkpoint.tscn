@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://chnnuea7ajnij" path="res://Textures/Checkpoint.png" id="1_f028t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h44lk"]
-size = Vector2(22, 38)
+size = Vector2(22, 36)
 
 [sub_resource type="Animation" id="Animation_qb45c"]
 resource_name = "Activated"
@@ -47,7 +47,7 @@ _data = {
 script = ExtResource("1_ajb0h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.07, 0.07)
+scale = Vector2(0.069, 0.069)
 texture = ExtResource("1_f028t")
 
 [node name="Area2D" type="Area2D" parent="."]

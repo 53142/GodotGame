@@ -9,7 +9,7 @@ var level_paths = [
 	"res://Levels/3.tscn"
 ]
 
-const max_scores = [35, 35]
+const max_scores = [35, 35, 28]
 
 
 

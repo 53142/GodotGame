@@ -8,6 +8,9 @@ const JUMP_VELOCITY = -400.0
 var start_game = false
 var deaths = 0
 var score = 0
+var curTilemap : TileData
+
+
 
 @export var max_lives := 5
 
@@ -21,6 +24,8 @@ func _ready():
 	print("Max lives: ", max_lives)
 
 func _physics_process(delta):
+	if is_on_lava():
+		die()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -75,6 +80,27 @@ func die():
 
 func start_game_func():
 	start_game = true
+
+
+
+func getTileBelowPlayer() -> TileData:
+	print(curTilemap)
+	if !curTilemap:
+		return null
+	
+	var localMapPos: Vector2 = curTilemap.to_local(global_position)
+	var tilePos: Vector2i = curTilemap.local_to_map( localMapPos )
+	return curTilemap.get_cell_tile_data(0, tilePos)
+
+
+func is_on_lava() -> bool:
+	var tileData: TileData = getTileBelowPlayer()
+	if tileData == null:
+		return false
+	if tileData.get_custom_data(&"kill_on_touch") == true:
+		return true
+	return false
+
 
 func save():
 	var save_dict = {
