@@ -13,12 +13,14 @@ var curTilemap : TileData
 
 
 @export var max_lives := 5
+@export var min_position_y := 250
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	GameManager.score = score
+	print(score)
 	# fix bug with score always resetting to 0 even if had score when loading save
 	GameManager.player = self
 	print("Max lives: ", max_lives)
@@ -32,8 +34,8 @@ func _physics_process(delta):
 	else:
 		velocity.y=0
 		# Cap velocity at 1000
-		if velocity.y > 1000:
-			velocity.y = 1000
+		if velocity.y > 1500:
+			velocity.y = 1500
 			
 	if start_game:
 		# Debug keys
@@ -72,7 +74,7 @@ func _physics_process(delta):
 
 		move_and_slide()
 	
-	if position.y >= 650:
+	if position.y >= min_position_y:
 		die()
 func die():
 	deaths+=1
@@ -84,7 +86,8 @@ func start_game_func():
 
 
 func getTileBelowPlayer() -> TileData:
-	print(curTilemap)
+	# FIX LATER
+	# print(curTilemap)
 	if !curTilemap:
 		return null
 	
@@ -103,6 +106,7 @@ func is_on_lava() -> bool:
 
 
 func save():
+	print("save score: ", score)
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),

@@ -40,6 +40,11 @@ func _ready():
 			speed = 60
 		else:
 			speed = -60
+	else:
+		if facing_right:
+			speed = 30
+		else:
+			speed = -30
 
 
 func save():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxaw23nmeptv2"]
 
-[ext_resource type="Script" path="res://Interactable/startlevel.gd" id="1_n2gt3"]
+[ext_resource type="Script" path="res://Scripts/Interactable/startlevel.gd" id="1_n2gt3"]
 [ext_resource type="Texture2D" uid="uid://rbxgfrcany2b" path="res://FinishLevel.png" id="2_hxsao"]
 
 [node name="StartLevel" type="Node2D" groups=["Persist"]]

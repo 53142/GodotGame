@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bo4xjh16fxxk4"]
 
-[ext_resource type="Script" path="res://Interactable/finishlevel.gd" id="1_io7q2"]
+[ext_resource type="Script" path="res://Scripts/Interactable/finishlevel.gd" id="1_io7q2"]
 [ext_resource type="Texture2D" uid="uid://rbxgfrcany2b" path="res://FinishLevel.png" id="2_bpe3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h44lk"]

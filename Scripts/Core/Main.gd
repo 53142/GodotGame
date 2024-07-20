@@ -4,12 +4,12 @@ class_name Main
 var current_level = null
 var current_index = null
 var level_paths = [
-	"res://Levels/test_level.tscn",
+	"res://Levels/1.tscn",
 	"res://Levels/2.tscn",
 	"res://Levels/3.tscn"
 ]
 
-const max_scores = [35, 38, 30]
+const max_scores = [38, 38, 30]
 
 
 

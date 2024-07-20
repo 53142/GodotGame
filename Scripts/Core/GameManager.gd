@@ -7,7 +7,7 @@ signal advance_next_level
 
 # Preload scripts
 const Checkpoint = preload("res://Scripts/Interactable/checkpoint.gd")
-const StartLevel = preload("res://Interactable/startlevel.gd")
+const StartLevel = preload("res://Scripts/Interactable/startlevel.gd")
 const Player = preload("res://Characters/player.gd")
 
 var current_checkpoint : Checkpoint
@@ -67,6 +67,7 @@ func game_over():
 
 	player.deaths = 0
 	score = 0
+	player.score = score
 	
 	
 	# Update HUD
@@ -89,6 +90,7 @@ func level_complete():
 func increment_score():
 	score+=1
 	score_changed.emit(score)
+	player.score = score
 
 func reset_deaths():
 	player.deaths = 0
@@ -159,7 +161,6 @@ func load_game():
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		print("filename: ", node_data["filename"])
-		print(new_object.position)
 
 		# Now we set the remaining variables.
 		for i in node_data.keys():
