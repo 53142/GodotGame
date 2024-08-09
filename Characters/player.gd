@@ -116,6 +116,7 @@ func save():
 		"jump_velocity" : JUMP_VELOCITY,
 		"start_game" : start_game,
 		"max_lives" : max_lives,
+		"min_position_y": min_position_y,
 		"deaths" : deaths,
 		"score" : score
 	}

@@ -6,16 +6,18 @@ var current_index = null
 var level_paths = [
 	"res://Levels/1.tscn",
 	"res://Levels/2.tscn",
-	"res://Levels/3.tscn"
+	"res://Levels/3.tscn",
+	"res://Levels/4.tscn"
 ]
 
-const max_scores = [38, 38, 30]
+const max_scores = [38, 38, 30, 0]
 
 
 
 func _ready():
 	load_level(0)  # Start with the first level
 	GameManager.advance_next_level.connect(_on_advance_next_level)
+
 
 func load_level(index):
 	current_index = index

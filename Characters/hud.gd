@@ -7,6 +7,14 @@ func _ready():
 	
 	GameManager.show_game_over.connect(_on_show_game_over)
 	
+
+# Just used to always run below
+func _physics_process(delta):
+	if Input.is_action_just_pressed("enter"):
+		$Message.hide()
+		$StartButton.hide()
+		GameManager.start_game()
+
 func show_message(text):
 	$Message.text = text
 	$Message.show()
@@ -35,7 +43,7 @@ func show_finish_game():
 
 func update_deaths(deaths):
 	$DeathLabel.text = "Deaths: " + str(deaths)
-	
+
 func _on_start_button_pressed():
 	$Message.hide()
 	$StartButton.hide()
