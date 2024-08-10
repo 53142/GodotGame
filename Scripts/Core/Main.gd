@@ -10,7 +10,7 @@ var level_paths = [
 	"res://Levels/4.tscn"
 ]
 
-const max_scores = [38, 38, 30, 0]
+const max_scores = [38, 38, 30, 20]
 
 
 
@@ -18,10 +18,8 @@ func _ready():
 	load_level(0)  # Start with the first level
 	GameManager.advance_next_level.connect(_on_advance_next_level)
 
-
 func load_level(index):
 	current_index = index
-	
 	
 	if current_level != null:
 		print("Freeing current level: ", current_level)
@@ -50,10 +48,6 @@ func next_level():
 		print("No more levels!")
 		$HUD.show_finish_game()
 		# Load the first level again
-		
-		
-		
-		
 		load_level(0)
 
 func _on_advance_next_level():

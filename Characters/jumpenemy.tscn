@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://x2k7kpo1hs1h"]
 
-[ext_resource type="Script" path="res://Scripts/Interactable/enemy2.gd" id="1_wrx2t"]
+[ext_resource type="Script" path="res://Scripts/Interactable/jumpenemy.gd" id="1_lsq0t"]
 [ext_resource type="Texture2D" uid="uid://bgl8s8gh2ylbp" path="res://Textures/Enemy.png" id="2_7j7uh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qv7p"]
@@ -11,7 +11,7 @@ size = Vector2(16, 16)
 
 [node name="JumpEnemy" type="CharacterBody2D" groups=["Persist"]]
 collision_layer = 2
-script = ExtResource("1_wrx2t")
+script = ExtResource("1_lsq0t")
 
 [node name="Enemy" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
