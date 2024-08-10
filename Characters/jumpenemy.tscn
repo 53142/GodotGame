@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://x2k7kpo1hs1h"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable/enemy2.gd" id="1_wrx2t"]
+[ext_resource type="Texture2D" uid="uid://bgl8s8gh2ylbp" path="res://Textures/Enemy.png" id="2_7j7uh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qv7p"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ounl"]
+size = Vector2(16, 16)
+
+[node name="JumpEnemy" type="CharacterBody2D" groups=["Persist"]]
+collision_layer = 2
+script = ExtResource("1_wrx2t")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_7j7uh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2qv7p")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_8ounl")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-44, -2)
+scale = Vector2(0.5, 0.5)
+target_position = Vector2(0, 29)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
