@@ -2,15 +2,13 @@ extends CharacterBody2D
 class_name Player
 signal hit
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var start_game = false
 var deaths = 0
 var score = 0
-var curTilemap : TileData
 
-
+@onready var curTilemap = get_parent().get_node("TileMap")
 
 @export var max_lives := 5
 @export var min_position_y := 250
@@ -20,7 +18,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	GameManager.score = score
-	print(score)
+	print("Score: ", score)
 	# fix bug with score always resetting to 0 even if had score when loading save
 	GameManager.player = self
 	print("Max lives: ", max_lives)
@@ -84,25 +82,24 @@ func start_game_func():
 	start_game = true
 
 
-
-func getTileBelowPlayer() -> TileData:
-	# FIX LATER
-	# print(curTilemap)
-	if !curTilemap:
-		return null
-	
-	var localMapPos: Vector2 = curTilemap.to_local(global_position)
-	var tilePos: Vector2i = curTilemap.local_to_map( localMapPos )
-	return curTilemap.get_cell_tile_data(0, tilePos)
-
-
 func is_on_lava() -> bool:
-	var tileData: TileData = getTileBelowPlayer()
-	if tileData == null:
-		return false
-	if tileData.get_custom_data(&"kill_on_touch") == true:
+	var player_position = position
+	
+	# Convert player's global position to the tilemap's local position
+	var local_position = curTilemap.to_local(player_position)
+	
+	# Convert local position to tile coordinates
+	var tile_position = curTilemap.local_to_map(local_position)
+		
+	var clicked_cell = curTilemap.local_to_map(tile_position)
+	var data = curTilemap.get_cell_tile_data(0, clicked_cell)
+	if data:
+		print("data: ")
+		print(data.get_custom_data("kill_on_touch"))
 		return true
-	return false
+	else:
+		print("no data")
+		return false
 
 
 func save():
