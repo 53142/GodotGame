@@ -36,11 +36,10 @@ func load_level(index):
 	GameManager.current_level = current_level
 	GameManager.max_score = max_scores[current_index]
 	$HUD.update_score(GameManager.score, GameManager.max_score)
-	
-	
+	$HUD.update_deaths(0, 0)
+
 	if current_index == 0:
 		$HUD.show_start_screen()
-	# Connect any signals from the level to the main script if needed
 
 func next_level():
 	var next_index = current_index + 1

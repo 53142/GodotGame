@@ -40,8 +40,8 @@ func show_finish_game():
 	$StartButton.show()
 	await get_tree().create_timer(1.0).timeout
 
-func update_deaths(deaths):
-	$DeathLabel.text = "Deaths: " + str(deaths)
+func update_deaths(deaths, max_deaths):
+	$DeathLabel.text = "Deaths: " + str(deaths) + "/" + str(max_deaths)
 
 func _on_start_button_pressed():
 	$Message.hide()
@@ -51,8 +51,8 @@ func _on_start_button_pressed():
 func _on_message_timer_timeout():
 	$Message.hide()
 	
-func _on_death_changed(deaths):
-	update_deaths(deaths)
+func _on_death_changed(deaths, max_deaths):
+	update_deaths(deaths, max_deaths)
 	
 func _on_show_game_over():
 	show_game_over()

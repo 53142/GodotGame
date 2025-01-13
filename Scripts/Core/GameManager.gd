@@ -1,5 +1,5 @@
 extends Node
-signal death_changed(deaths)
+signal death_changed(deaths, max_deaths)
 signal score_changed(score, max_score)
 
 signal show_game_over
@@ -21,7 +21,7 @@ var current_level = null
 var was_game_over = false
 
 func respawn_player():
-	death_changed.emit(player.deaths)
+	death_changed.emit(player.deaths, player.max_lives)
 	
 	# Set max # of deaths
 	if (player.deaths >= player.max_lives):
@@ -72,7 +72,7 @@ func game_over():
 	
 	
 	# Update HUD
-	death_changed.emit(player.deaths)
+	death_changed.emit(player.deaths, player.max_lives)
 	score_changed.emit(score, max_score)
 	player.start_game = false
 	
@@ -95,7 +95,7 @@ func increment_score():
 
 func reset_deaths():
 	player.deaths = 0
-	death_changed.emit(player.deaths)
+	death_changed.emit(player.deaths, player.max_lives)
 
 func save_game():
 	print("saving game")
@@ -167,5 +167,5 @@ func load_game():
 		if new_object.has_method("_ready"):
 			new_object._ready()	
 	# Update HUD
-	death_changed.emit(player.deaths)
+	death_changed.emit(player.deaths, player.max_lives)
 	score_changed.emit(score, max_score)
