@@ -1,6 +1,6 @@
 extends Node
 signal death_changed(deaths)
-signal score_changed(score)
+signal score_changed(score, max_score)
 
 signal show_game_over
 signal advance_next_level
@@ -15,6 +15,7 @@ var start_location : StartLevel
 var player : Player
 
 var score = 0
+var max_score = 0
 
 var current_level = null
 var was_game_over = false
@@ -72,7 +73,7 @@ func game_over():
 	
 	# Update HUD
 	death_changed.emit(player.deaths)
-	score_changed.emit(score)
+	score_changed.emit(score, max_score)
 	player.start_game = false
 	
 	show_game_over.emit()
@@ -89,7 +90,7 @@ func level_complete():
 
 func increment_score():
 	score+=1
-	score_changed.emit(score)
+	score_changed.emit(score, max_score)
 	player.score = score
 
 func reset_deaths():
@@ -119,12 +120,6 @@ func save_game():
 
 		# Store the save dictionary as a new line in the save file.
 		save_game.store_line(json_string)
-
-
-
-
-
-
 
 func load_game():
 	print("loading game")
@@ -173,4 +168,4 @@ func load_game():
 			new_object._ready()	
 	# Update HUD
 	death_changed.emit(player.deaths)
-	score_changed.emit(score)
+	score_changed.emit(score, max_score)

@@ -19,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	GameManager.score = score
 	print("Score: ", score)
+	
 	# fix bug with score always resetting to 0 even if had score when loading save
 	GameManager.player = self
 	print("Max lives: ", max_lives)
@@ -41,14 +42,11 @@ func _physics_process(delta):
 			deaths = 0
 		if Input.is_action_just_pressed("debug_next_level"):
 			GameManager.level_complete()
-		
-		
 		if Input.is_action_just_pressed("save_game"):
 			GameManager.save_game()
-			
 		if Input.is_action_just_pressed("load_game"):
 			GameManager.load_game()
-		
+
 		# Handle jump
 		if (Input.is_action_just_pressed("jump") || Input.is_action_just_pressed("jump(arrow)")) && is_on_floor():
 			velocity.y = JUMP_VELOCITY
@@ -61,7 +59,7 @@ func _physics_process(delta):
 		
 		if abs(direction2) > abs(direction):
 			direction = direction2
-		
+
 		if direction:
 			if !Input.is_action_pressed("move_slower"):
 				velocity.x = direction * SPEED
@@ -71,7 +69,7 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 		move_and_slide()
-	
+
 	if position.y >= min_position_y:
 		die()
 func die():
@@ -100,7 +98,6 @@ func is_on_lava() -> bool:
 	else:
 		print("no data")
 		return false
-
 
 func save():
 	print("save score: ", score)

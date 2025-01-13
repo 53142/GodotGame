@@ -9,7 +9,7 @@ func _ready():
 	
 
 # Just used to always if statement
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("enter"):
 		$Message.hide()
 		$StartButton.hide()
@@ -57,11 +57,11 @@ func _on_death_changed(deaths):
 func _on_show_game_over():
 	show_game_over()
 
-func update_score(score):
-	$ScoreLabel.text = "Score: " + str(score)
+func update_score(score, max_score):
+	$ScoreLabel.text = "Score: " + str(score) + "/" + str(max_score)
 	
-func _on_score_changed(score):
-	update_score(score)
+func _on_score_changed(score, max_score):
+	update_score(score, max_score)
 	
 func show_final_score(score, got_max_score):
 	$Message.show()

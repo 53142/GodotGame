@@ -11,9 +11,7 @@ var level_paths = [
 	"res://Levels/5.tscn"
 ]
 
-const max_scores = [38, 38, 30, 20, 6]
-
-
+const max_scores = [38, 38, 30, 20, 8]
 
 func _ready():
 	load_level(0)  # Start with the first level
@@ -28,16 +26,19 @@ func load_level(index):
 		current_level = null
 	
 	# Load the level scene
-	print("Loading level: ", level_paths[index])
-	var level_scene = ResourceLoader.load(level_paths[index])
+	print("Loading level: ", level_paths[current_index])
+	var level_scene = ResourceLoader.load(level_paths[current_index])
 	
 	# Instance the level and add it to the scene tree
 	current_level = level_scene.instantiate()
 	#add_child(current_level)
 	call_deferred("add_child", current_level)
 	GameManager.current_level = current_level
+	GameManager.max_score = max_scores[current_index]
+	$HUD.update_score(GameManager.score, GameManager.max_score)
 	
-	if index > 0:
+	
+	if current_index == 0:
 		$HUD.show_start_screen()
 	# Connect any signals from the level to the main script if needed
 
@@ -52,14 +53,13 @@ func next_level():
 		load_level(0)
 
 func _on_advance_next_level():
-	var got_max_score = false
-	if GameManager.score == max_scores[current_index]:
-		got_max_score = true
+	var got_max_score = GameManager.score == GameManager.max_score
 	$HUD.show_final_score(GameManager.score, got_max_score)
 	await get_tree().create_timer(2.0).timeout
-	
+
 	# Reset score and deaths
 	GameManager.score = 0
+	GameManager.max_score = max_scores[current_index]
 	GameManager.reset_deaths()
-	$HUD.update_score(GameManager.score)
+	$HUD.update_score(GameManager.score, GameManager.max_score)
 	next_level()

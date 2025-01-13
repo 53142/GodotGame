@@ -54,6 +54,12 @@ position = Vector2(543, -1523)
 [node name="Coin" parent="." instance=ExtResource("5_jl521")]
 position = Vector2(248, -339)
 
+[node name="Coin7" parent="." instance=ExtResource("5_jl521")]
+position = Vector2(555, -366)
+
+[node name="Coin8" parent="." instance=ExtResource("5_jl521")]
+position = Vector2(122, -553)
+
 [node name="Coin2" parent="." instance=ExtResource("5_jl521")]
 position = Vector2(311, -586)
 
@@ -105,10 +111,12 @@ position = Vector2(296, -1202)
 
 [node name="Enemy" parent="." instance=ExtResource("8_cy8wr")]
 position = Vector2(549, -276)
-speed_fast = false
 
 [node name="Enemy2" parent="." instance=ExtResource("8_cy8wr")]
 position = Vector2(87, -1061)
+
+[node name="Enemy3" parent="." instance=ExtResource("8_cy8wr")]
+position = Vector2(3, -1061)
 
 [node name="Checkpoint" parent="." instance=ExtResource("9_np8ak")]
 position = Vector2(311, -514)
