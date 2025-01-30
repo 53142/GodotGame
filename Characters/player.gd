@@ -32,10 +32,10 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	else:
 		velocity.y=0
-		# Cap velocity at 1000
-		if velocity.y > 1500:
-			velocity.y = 1500
-			
+	# Cap velocity at 1500
+	if velocity.y > 1500:
+		velocity.y = 1500
+
 	if start_game:
 		# Debug keys
 		if Input.is_action_just_pressed("reset_deaths"):
@@ -53,10 +53,9 @@ func _physics_process(delta):
 
 
 		# Get the input direction and handle the movement/deceleration.
-		
 		var direction = Input.get_action_strength("right") - Input.get_action_strength("left")
 		var direction2 = Input.get_action_strength("right(arrow)") - Input.get_action_strength("left(arrow)")
-		
+	
 		if abs(direction2) > abs(direction):
 			direction = direction2
 

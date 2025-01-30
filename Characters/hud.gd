@@ -11,9 +11,10 @@ func _ready():
 # Just used to always if statement
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("enter"):
-		$Message.hide()
-		$StartButton.hide()
-		GameManager.start_game()
+		if !$StartButton.disabled:
+			$Message.hide()
+			$StartButton.hide()
+			GameManager.start_game()
 
 func show_message(text):
 	$Message.text = text
@@ -21,11 +22,20 @@ func show_message(text):
 	$MessageTimer.start()
 
 func show_start_screen():
-	$Message.text = "Get to the end of the course while avoiding the enemies"
+	$Message.text = "Get to the end of the level while avoiding the enemies."
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
+	$StartButton.disabled = false
 	$StartButton.show()
+	
+func show_controls():
+	$Message.text = "Press the arrow keys to move. Hold shift to move slower."
+	$Message.show()
+	$StartButton.disabled = true
+	await get_tree().create_timer(3.0).timeout
+	$Message.hide()
+	show_start_screen()
 
 func show_game_over():
 	show_message("Game Over")

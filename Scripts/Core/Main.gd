@@ -38,9 +38,11 @@ func load_level(index):
 	$HUD.update_score(GameManager.score, GameManager.max_score)
 	$HUD.update_deaths(0, 0)
 
-	#if current_index == 0:
+	if current_index == 0:
+		$HUD.show_controls()
 		#$HUD.show_start_screen()
-	$HUD.show_start_screen()
+	else:
+		$HUD.show_start_screen()
 
 func next_level():
 	var next_index = current_index + 1
