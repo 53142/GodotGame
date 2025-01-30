@@ -22,13 +22,13 @@ var was_game_over = false
 
 func respawn_player():
 	death_changed.emit(player.deaths, player.max_lives)
-	
+
 	# Set max # of deaths
 	if (player.deaths >= player.max_lives):
 		print("game_over")
 		was_game_over = true
 		game_over()
-	
+
 	if current_checkpoint != null:
 		player.position = current_checkpoint.global_position
 	else:
@@ -48,23 +48,20 @@ func start_game():
 
 func game_over():
 	player.position = start_location.global_position
-	
+
 	# Remove current checkpoint
 	current_checkpoint = null
-	
-	
+
 	# Set all checkpoints to deactivated
 	for child in current_level.get_children():
 		if child is Checkpoint:
 			child.activated = false
-		
-	
+
 	# Set all checkpoints to deactivated
 	for child in current_level.get_children():
 		if child is Coin:
 			child.can_score = true
 			child.show()
-
 
 	player.deaths = 0
 	score = 0
@@ -165,7 +162,7 @@ func load_game():
 		
 		# Call _ready function if node has it
 		if new_object.has_method("_ready"):
-			new_object._ready()	
+			new_object._ready()
 	# Update HUD
 	death_changed.emit(player.deaths, player.max_lives)
 	score_changed.emit(score, max_score)

@@ -11,7 +11,7 @@ var level_paths = [
 	"res://Levels/5.tscn"
 ]
 
-const max_scores = [38, 38, 30, 20, 13]
+const max_scores = [38, 38, 30, 20, 14]
 
 func _ready():
 	load_level(0)  # Start with the first level
