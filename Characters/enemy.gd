@@ -46,7 +46,7 @@ func _ready():
 		speed*=2
 
 
-# fix bug with enemies falling off map
+# TODO: fix bug with enemies falling off map
 func save():
 	var save_dict = {
 		"filename" : get_scene_file_path(),

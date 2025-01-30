@@ -51,7 +51,6 @@ drag_vertical_enabled = true
 position = Vector2(-91, -3)
 
 [node name="StartLevel" parent="." instance=ExtResource("4_l3rjb")]
-position = Vector2(-633, -762)
 
 [node name="Coin" parent="." instance=ExtResource("5_jl521")]
 position = Vector2(248, -339)
@@ -149,6 +148,7 @@ position = Vector2(-317, -1541)
 
 [node name="Enemy7" parent="." instance=ExtResource("8_cy8wr")]
 position = Vector2(-234, -1541)
+speed_really_fast = true
 
 [node name="Enemy2" parent="." instance=ExtResource("8_cy8wr")]
 position = Vector2(87, -1061)
