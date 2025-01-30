@@ -81,6 +81,10 @@ func start_game_func():
 
 
 func is_on_lava() -> bool:
+	return false
+	"""
+	fix player randomly dying
+	print("TEST")
 	var player_position = position
 	
 	# Convert player's global position to the tilemap's local position
@@ -98,6 +102,7 @@ func is_on_lava() -> bool:
 	else:
 		print("no data")
 		return false
+	"""
 
 func save():
 	print("save score: ", score)

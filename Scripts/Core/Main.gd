@@ -11,7 +11,7 @@ var level_paths = [
 	"res://Levels/5.tscn"
 ]
 
-const max_scores = [38, 38, 30, 20, 8]
+const max_scores = [38, 38, 30, 20, 13]
 
 func _ready():
 	load_level(0)  # Start with the first level
@@ -38,8 +38,9 @@ func load_level(index):
 	$HUD.update_score(GameManager.score, GameManager.max_score)
 	$HUD.update_deaths(0, 0)
 
-	if current_index == 0:
-		$HUD.show_start_screen()
+	#if current_index == 0:
+		#$HUD.show_start_screen()
+	$HUD.show_start_screen()
 
 func next_level():
 	var next_index = current_index + 1

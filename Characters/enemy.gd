@@ -5,6 +5,7 @@ var speed = -30.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var speed_fast := true
+@export var speed_really_fast := false
 var facing_right = false
 
 func _physics_process(delta):
@@ -33,16 +34,16 @@ func _on_hitbox_area_entered(area):
 		area.get_parent().die()
 
 func _ready():
-	if speed_fast:
-		if facing_right:
-			speed = 60
-		else:
-			speed = -60
+	if facing_right:
+		speed = 30
 	else:
-		if facing_right:
-			speed = 30
-		else:
-			speed = -30
+		speed = -30
+
+	if speed_fast:
+		speed*= 2
+		
+	if speed_really_fast:
+		speed*=2
 
 
 # fix bug with enemies falling off map
